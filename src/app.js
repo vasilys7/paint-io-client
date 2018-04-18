@@ -42,7 +42,8 @@ let username; // client username
 const paintCanvas = new PaintCanvas({
   mountPoint: document.body,
   onMove({points, color}) {
-    socket.emit('DRAW_POINTS', points, color);
+    const data = {points, color};
+    socket.emit('DRAW_POINTS', data);
     // TODO 1.3: emit a "DRAW_POINTS" message to the server when paintCanvas has mouseMove events
   },
 });
