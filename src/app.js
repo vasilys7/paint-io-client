@@ -44,7 +44,6 @@ const paintCanvas = new PaintCanvas({
   onMove({points, color}) {
     const data = {points, color};
     socket.emit('DRAW_POINTS', data);
-    // TODO 1.3: emit a "DRAW_POINTS" message to the server when paintCanvas has mouseMove events
   },
 });
 
@@ -75,8 +74,9 @@ setTimeout(() => {
   // next tick
   username = prompt('Enter your username');
   greet.write(`Hello, ${username}.`);
+  socket.emit('LOGIN', {username});
+
 });
-// TODO 2.1: Emit a login event (eg "LOGIN") to the server when the client is connected with the selected username.
 // TODO 2.2: Prevent users from using an existing username (multiple ways to do this, the most elegant would be using an "acknowledgement" when you dispatch the login event)
 // TODO 2.3: Listen for an update user list event (eg "UPDATE_USER_LIST") from server, containing the "users" object with all usernames then update the dom to display this.
 
