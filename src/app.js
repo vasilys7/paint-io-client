@@ -74,7 +74,9 @@ setTimeout(() => {
   // next tick
   username = prompt('Enter your username');
   greet.write(`Hello, ${username}.`);
-  socket.emit('LOGIN', {username});
+  socket.emit('LOGIN', {username}, (data) => {
+      greet.write(`${username} is already taken`)
+  });
 
 });
 // TODO 2.2: Prevent users from using an existing username (multiple ways to do this, the most elegant would be using an "acknowledgement" when you dispatch the login event)
